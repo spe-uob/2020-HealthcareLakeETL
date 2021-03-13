@@ -2,7 +2,7 @@
 
 This repository contains the Spark ETL jobs for our AWS Glue pipeline. Used by the [HealthcareLake](https://github.com/spe-uob/HealthcareLake) project.
 
-### FHIR -> OMOP
+### FHIR &rarr; OMOP
 
 We are transforming one dataframe into several dataframes. The exact mapping can be found here:
 
