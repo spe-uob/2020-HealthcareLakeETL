@@ -1,6 +1,6 @@
 # HealthcareLakeETL
 
-This repository contains the Spark ETL jobs for our AWS Glue pipeline.
+This repository contains the Spark ETL jobs for our AWS Glue pipeline. Used by the [HealthcareLake](https://github.com/spe-uob/HealthcareLake) project.
 
 ### FHIR -> OMOP
 
