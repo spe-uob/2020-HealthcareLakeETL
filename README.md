@@ -9,7 +9,7 @@ We are transforming one dataframe (FHIR) into several dataframes that correspond
 Once the patient-level data model (FHIR) has been transformed to the population-level data model (OMOP CDM), we can access the Observational Health Data Sciences and Informatics (OHDSI) resources that can perform data aggregations and packages for cohort creation and various population level data analytics. [More info](https://www.ohdsi.org/data-standardization/)
 
 
-There are open issues for each. Your task is to work out how to do the mapping and submit a Jupyter Notebook for your experiment.
+There are open issues for each. Your task is to work out how to do the mapping and submit a Jupyter Notebook for your experiment. We will combine the notebook experiments into one Python script at the end and this will be run as one automated job on AWS Glue.
 
 ## Local development
 
