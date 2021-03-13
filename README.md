@@ -4,9 +4,10 @@ This repository contains the Spark ETL jobs for our AWS Glue pipeline. Used by t
 
 ### FHIR &rarr; OMOP
 
-We are transforming one dataframe into several dataframes. The exact mapping can be found here:
+We are transforming one dataframe (FHIR) into several dataframes that correspond with the OMOP Common Data Model (CDM). The exact mapping can be found [here](https://build.fhir.org/ig/HL7/cdmh/profiles.html#omop-to-fhir-mappings).
 
-[Mappings](https://build.fhir.org/ig/HL7/cdmh/profiles.html#omop-to-fhir-mappings)
+Once the patient-level data model (FHIR) has been transformed to the population-level data model (OMOP CDM), we can access the Observational Health Data Sciences and Informatics (OHDSI) resources that can perform data aggregations and packages for cohort creation and various population level data analytics. [More info](https://www.ohdsi.org/data-standardization/)
+
 
 There are open issues for each. Your task is to work out how to do the mapping and submit a Jupyter Notebook for your experiment.
 
