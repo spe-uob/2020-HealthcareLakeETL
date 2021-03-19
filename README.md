@@ -22,7 +22,7 @@ To setup the Jupyter Notebook environment, follow these steps:
 2. Create a Virtual Environment with Anaconda
 
 ```
-conda create --name etl python=3.9
+conda create --name etl python=3.7
 ```
 
 3. Switch to this virtual environment
