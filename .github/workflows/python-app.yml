@@ -20,6 +20,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '11'
+    - uses: vemonet/setup-spark@v1
+      with:
+        spark-version: '2.4.3' # AWS Glue
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
