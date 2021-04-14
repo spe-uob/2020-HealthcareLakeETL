@@ -22,6 +22,7 @@ ptyprocess==0.7.0
 py==1.10.0
 py4j==0.10.7
 Pygments==2.8.1
+pypandoc==1.5
 pyparsing==2.4.7
 pyspark==2.4.7
 pytest==6.2.3
