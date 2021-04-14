@@ -1,3 +1,5 @@
+[![Pytest](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml)
+
 # HealthcareLakeETL
 
 This repository contains the Spark ETL jobs for our AWS Glue pipeline. Used by the [HealthcareLake](https://github.com/spe-uob/HealthcareLake) project.
