@@ -25,10 +25,11 @@ jobs:
         java-version: '11'
     - name: Setup Spark
       run: |
-        wget https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-1.0/spark-2.4.3-bin-hadoop2.8.tgz
-        tar xzf spark-2.4.3-bin-hadoop2.8.tgz
+        cd /tmp
+        wget -q https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-1.0/spark-2.4.3-bin-hadoop2.8.tgz
+        tar xzf spark-2.4.3-bin-hadoop2.8.tgz -C /home/runner
         rm spark-2.4.3-bin-hadoop2.8.tgz
-        echo SPARK_HOME=$HOME/spark-2.4.3-bin-hadoop2.8 >> $GITHUB_ENV
+        echo SPARK_HOME=/home/runner/spark-2.4.3-bin-hadoop2.8 >> $GITHUB_ENV
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel
