@@ -25,7 +25,6 @@ jobs:
         java-version: '11'
     - name: Setup Spark
       run: |
-        sudo apt update
         wget https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-1.0/spark-2.4.3-bin-hadoop2.8.tgz
         tar xzf spark-2.4.3-bin-hadoop2.8.tgz
         rm spark-2.4.3-bin-hadoop2.8.tgz
