@@ -1,3 +1,9 @@
-def map_patient(df):
-    # TODO: FHIR -> OMOP (Patient)
-    return df
+from mappings import map_patient
+
+
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
