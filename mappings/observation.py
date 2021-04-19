@@ -31,7 +31,7 @@ def map_observation(df):
                             .withColumn("person_id", Observation.subject.reference)\
                             .withColumn("value_as_string", Observation.valueCodeableConcept.text)\
                             .withColumnRenamed("code", "observation_concept_id")\
-                            .withColumnRenamed("effectiveDateTime", "measurement_datetime")\
+                            .withColumnRenamed("effectiveDateTime", "observation_datetime")\
                             .drop("valueCodeableConcept")\
                             .withColumn("visit_occurrence_id", Observation.encounter.reference)\
                             .withColumnRenamed("performer", "provider_id")\
