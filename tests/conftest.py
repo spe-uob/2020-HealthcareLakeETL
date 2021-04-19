@@ -5,7 +5,10 @@ from pyspark.sql import SparkSession
 
 @pytest.fixture(scope="session")
 def spark_session():
-    spark = SparkSession.builder.appName('testing').getOrCreate()
+    spark = SparkSession.builder\
+        .appName('testing')\
+        .config('spark.driver.bindAddress', '127.0.0.1')\
+        .getOrCreate()
     yield spark
     spark.stop()
 
