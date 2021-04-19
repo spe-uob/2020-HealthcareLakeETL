@@ -45,9 +45,24 @@ class TestPatient():
         # TODO: test column data types
         pass
 
-    def test_birthdate(self):
-        # TODO: test with a custom dataframe
-        pass
+    def test_birthdate(self, spark_session):
+        expect_year = 2000
+        expect_month = 5
+        expect_day = 17
+        test_datetime = datetime(
+            expect_year, expect_month, expect_day, hour=6, minute=10, second=5
+        )
+        data = [(test_datetime,)]
+        rdd = spark_session.sparkContext.parallelize(data)
+        df = rdd.toDF(["birthDate"])
+
+        out = map_patient(df)
+        df2 = out.first()
+
+        assert(df2['year_of_birth'] == expect_year)
+        assert(df2['month_of_birth'] == expect_month)
+        assert(df2['day_of_birth'] == expect_day)
+        assert(df2['birth_datetime'] == test_datetime)
 
     def test_gender(self, spark_session):
         # Mock data
