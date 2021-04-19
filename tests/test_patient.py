@@ -1,6 +1,9 @@
+from datetime import datetime
 import pytest
 
 from main import map_patient
+
+from pyspark.sql.types import DateType, StructType, StructField, StringType, IntegerType
 
 
 class TestPatient():
@@ -13,6 +16,16 @@ class TestPatient():
         "person_id", "provider_id", "gender_concept_id",
         "year_of_birth", "month_of_birth", "day_of_birth", "birth_datetime"
     ] + __nullable_fields
+
+    schema = StructType([
+        StructField("person_id", StringType(), False),
+        StructField("provider_id", StringType(), True),
+        StructField("gender_concept_id", StringType(), True),
+        StructField("year_of_birth", IntegerType(), True),
+        StructField("month_of_birth", IntegerType(), True),
+        StructField("day_of_birth", IntegerType(), True),
+        StructField("birth_datetime", DateType(), True),
+    ])
 
     @pytest.fixture()
     def set_up(self, data_frame):
@@ -36,9 +49,19 @@ class TestPatient():
         # TODO: test with a custom dataframe
         pass
 
-    def test_gender(self):
-        # TODO: test with custom gender dataframe
-        pass
+    def test_gender(self, spark_session):
+        # Mock data
+        columns = ["gender"]
+        data = [("male",), ("female",)]
+        rdd = spark_session.sparkContext.parallelize(data)
+        df = rdd.toDF(columns)
+        # Map data
+        out = map_patient(df)
+        # Compare data
+        in_rows = df.collect()
+        out_rows = out.collect()
+        for i, x in enumerate(out_rows):
+            assert(x.gender_concept_id == in_rows[i].gender)
 
     def test_location(self):
         # TODO: test with custom location
