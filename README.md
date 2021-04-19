@@ -13,6 +13,12 @@ Once the patient-level data model (FHIR) has been transformed to the population-
 
 There are open issues for each. Your task is to work out how to do the mapping and submit a Jupyter Notebook for your experiment. We will combine the notebook experiments into one Python script at the end and this will be run as one automated job on AWS Glue.
 
+## Testing
+
+```
+pytest
+```
+
 ## Local development
 
 These instructions are for working with the data offline as opposed to connecting to AWS EMR. This is recommended as there is less setup involved.
