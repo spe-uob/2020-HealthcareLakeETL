@@ -1,1 +1,1 @@
-from .patient import map_patient
+from .patient import map_patient, map_observation
