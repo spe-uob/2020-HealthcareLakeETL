@@ -1,4 +1,4 @@
-from mappings import map_patient
+from mappings import map_patient, map_measurement, map_observation
 
 
 def main():
