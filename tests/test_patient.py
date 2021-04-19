@@ -1,31 +1,19 @@
-from datetime import datetime
+from datetime import date
 import pytest
 
 from main import map_patient
-
-from pyspark.sql.types import DateType, StructType, StructField, StringType, IntegerType
 
 
 class TestPatient():
 
     __nullable_fields = [
         "race_concept_id", "ethnicity_concept_id",
-        "location_id", "care_site_id"
+        "location_id", "care_site_id", "provider_id"
     ]
     expected_fields = [
-        "person_id", "provider_id", "gender_concept_id",
+        "person_id", "gender_concept_id",
         "year_of_birth", "month_of_birth", "day_of_birth", "birth_datetime"
-    ] + __nullable_fields
-
-    schema = StructType([
-        StructField("person_id", StringType(), False),
-        StructField("provider_id", StringType(), True),
-        StructField("gender_concept_id", StringType(), True),
-        StructField("year_of_birth", IntegerType(), True),
-        StructField("month_of_birth", IntegerType(), True),
-        StructField("day_of_birth", IntegerType(), True),
-        StructField("birth_datetime", DateType(), True),
-    ])
+    ]
 
     @pytest.fixture()
     def set_up(self, data_frame):
@@ -41,20 +29,19 @@ class TestPatient():
             "Resulting columns did not match the expected columns: %s"\
             % self.expected_fields
 
-    def test_field_types(self, set_up):
-        # TODO: test column data types
-        pass
+    # def test_field_types(self, set_up):
+    #     # TODO: test column data types
+    #     pass
 
     def test_birthdate(self, spark_session):
         expect_year = 2000
         expect_month = 5
         expect_day = 17
-        test_datetime = datetime(
-            expect_year, expect_month, expect_day, hour=6, minute=10, second=5
-        )
-        data = [(test_datetime,)]
+        test_datetime = date(expect_year, expect_month, expect_day)
+        columns = ["resourceType", "identifier", "birthDate", "gender"]
+        data = [("Patient", "a", test_datetime, "male",)]
         rdd = spark_session.sparkContext.parallelize(data)
-        df = rdd.toDF(["birthDate"])
+        df = rdd.toDF(columns)
 
         out = map_patient(df)
         df2 = out.first()
@@ -66,8 +53,9 @@ class TestPatient():
 
     def test_gender(self, spark_session):
         # Mock data
-        columns = ["gender"]
-        data = [("male",), ("female",)]
+        columns = ["resourceType", "identifier", "birthDate", "gender"]
+        data = [("Patient", "a", date(2000, 2, 1), "male",),
+                ("Patient", "a", date(2000, 3, 1), "female",)]
         rdd = spark_session.sparkContext.parallelize(data)
         df = rdd.toDF(columns)
         # Map data
@@ -78,6 +66,6 @@ class TestPatient():
         for i, x in enumerate(out_rows):
             assert(x.gender_concept_id == in_rows[i].gender)
 
-    def test_location(self):
-        # TODO: test with custom location
-        pass
+    # def test_location(self):
+    #     # TODO: test with custom location
+    #     pass
