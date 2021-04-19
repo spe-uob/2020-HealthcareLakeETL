@@ -5,9 +5,9 @@ def map_patient(df):
     """Patient->Person (FHIR->OMOP)
 
     :param df: Input frame of FHIR records
-    :type df: DynamicFrame
+    :type df: DataFrame
     :return: Output frame of OMOP transform
-    :rtype: DynamicFrame
+    :rtype: DataFrame
     """
     patients = df.filter(df['resourceType'] == 'Patient')
     persons = patients.select(['identifier', 'gender', 'birthDate'])
