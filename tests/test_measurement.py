@@ -37,7 +37,7 @@ class TestMeasurement():
         df = rdd.toDF(columns)
 
         out = map_measurement(df)
-        df2 = out.first()
+        df2 = out.head()
 
         assert(df2['measurement_date'] == expected_date)
 
