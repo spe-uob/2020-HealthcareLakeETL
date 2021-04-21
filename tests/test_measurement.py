@@ -34,11 +34,11 @@ class TestMeasurement():
         columns = ["resourceType", "identifier", "measurement_datetime", "valueCodeableConcept"]
         data = [("Measurement", "a", test_datetime, None,)]
         rdd = spark_session.sparkContext.parallelize(data)
+        rdd.drop("valueCodeableConcept")
         df = rdd.toDF(columns)
 
         out = map_measurement(df)
-        out.drop("valueCodeableConcept")
-        df2 = out.head()
+        df2 = out.first()
 
         assert(df2['measurement_date'] == expected_date)
 
