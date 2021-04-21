@@ -11,7 +11,9 @@ class TestObservation():
     ]
     expected_fields = [
         "observation_id", "person_id", "observation_concept_id",
-        "observation_date", "observation_type_concept_id",
+        "observation_date", "observation_type_concept_id", 
+        "observation_datetime", "value_as_number", "provider_id",
+        "visit_occurrence_id"
     ]
 
     def test_field_names(self, data_frame):

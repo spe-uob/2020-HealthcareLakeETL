@@ -12,6 +12,8 @@ class TestMeasurement():
     expected_fields = [
         "measurement_id", "person_id", "measurement_concept_id",
         "measurement_date", "measurement_type_concept_id",
+        "measurement_datetime", "value_as_number", "provider_id",
+        "visit_occurrence_id", "unit_source_value"
     ]
 
     def test_field_names(self, data_frame):
