@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime, time
 import pytest
 from main import map_measurement
 
@@ -25,8 +25,21 @@ class TestMeasurement():
             "Resulting columns did not match the expected columns: %s"\
             % self.expected_fields
 
-    # def test_datetime(self, spark_session):
-    #     TODO
+    def test_datetime(self, spark_session):
+        # Test datetime is split correctly
+        expected_date = date.fromisoformat("2021-04-21")
+        t = time(11, 34, 56)
+        test_datetime = datetime.combine(expected_date, t)
+        
+        columns = ["resourceType", "identifier", "measurement_datetime"]
+        data = [("Measurement", "a", test_datetime,)]
+        rdd = spark_session.sparkContext.parallelize(data)
+        df = rdd.toDF(columns)
 
+        out = map_measurement(df)
+        df2 = out.first()
+
+        assert(df2['measurement_date'] == expected_date)
+        
     # def test_blood_pressures(self, spark_session):
     #     TODO
