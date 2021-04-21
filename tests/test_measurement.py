@@ -31,8 +31,8 @@ class TestMeasurement():
         t = time(11, 34, 56)
         test_datetime = datetime.combine(expected_date, t)
         
-        columns = ["resourceType", "identifier", "measurement_datetime"]
-        data = [("Measurement", "a", test_datetime,)]
+        columns = ["resourceType", "identifier", "measurement_datetime", "valueCodeableConcept"]
+        data = [("Measurement", "a", test_datetime, None,)]
         rdd = spark_session.sparkContext.parallelize(data)
         df = rdd.toDF(columns)
 
@@ -40,6 +40,6 @@ class TestMeasurement():
         df2 = out.first()
 
         assert(df2['measurement_date'] == expected_date)
-        
+
     # def test_blood_pressures(self, spark_session):
     #     TODO
