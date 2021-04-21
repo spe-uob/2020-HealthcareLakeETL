@@ -46,9 +46,9 @@ def map_measurement(df):
 
 
 
-    Measurement = Measurement.withColumn("measurement_concept_id", Measurement.measurement_concept_id.coding.getItem(0).code)\
+    Measurement = Measurement.withColumn("measurement_concept_id", Measurement.measurement_concept_id.coding.getItem(0).code)
                         
-    Measurement.printSchema()
+    
     Measurement = Measurement.withColumn("distolic", Measurement.component.getItem(0).valueQuantity.value)
     Measurement = Measurement.withColumn("systolic", Measurement.component.getItem(1).valueQuantity.value)
     Measurement = Measurement.withColumn("value_as_num_combine", F.when(F.col("distolic") >0 ,F.array("systolic", "distolic")))\
