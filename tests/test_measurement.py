@@ -37,6 +37,7 @@ class TestMeasurement():
         df = rdd.toDF(columns)
 
         out = map_measurement(df)
+        out.drop("valueCodeableConcept")
         df2 = out.head()
 
         assert(df2['measurement_date'] == expected_date)
