@@ -6,13 +6,13 @@ from main import map_observation
 class TestObservation():
 
     __nullable_fields = [
-        "observation_datetime", "value_as_number", "provider_id",
+        "observation_datetime", "value_as_string", "provider_id",
         "visit_occurrence_id"
     ]
     expected_fields = [
         "observation_id", "person_id", "observation_concept_id",
         "observation_date", "observation_type_concept_id", 
-        "observation_datetime", "value_as_number", "provider_id",
+        "observation_datetime", "value_as_string", "provider_id",
         "visit_occurrence_id"
     ]
 
