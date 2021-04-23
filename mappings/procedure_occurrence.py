@@ -41,6 +41,5 @@ def map_procedure_occurrence(df):
         .withColumnRenamed("id", "procedure_occurrence_id")\
         .withColumnRenamed("coding", "procedure_concept_id")\
         .withColumnRenamed("extension", "procedure_type_concept_id")\
-        .withColumnRenamed("extension", "quantity")\
         .withColumnRenamed("performer", "provider_id")
     return procedure_occurrence

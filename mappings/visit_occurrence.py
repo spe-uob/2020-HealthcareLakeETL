@@ -13,7 +13,7 @@ def map_visit_occurrence(df):
     # Filter By Encounter Resource type
     filtered = df.filter(df['resourceType'] == 'Encounter')
     Encounter = filtered.select(['id', 'subject', 'type',
-                                'location', 'hospitalization.admitSource',
+                                'location', 'provider', 'hospitalization.admitSource',
                                  'period', 'extension.valueCodeableConcept'])
     # splits the date and time
     split_start = split(Encounter['period.start'], 'T')
@@ -28,12 +28,12 @@ def map_visit_occurrence(df):
     dropped = visit_date_time.drop("period")
     # Rename the columns
     visit_occurrence = dropped\
-        .withColumnRenamed("type", "preceding_visit_occurrence")\
         .withColumnRenamed("id", "visit_occurrence_id")\
-        .withColumnRenamed("admitSource", "admitting_source_concept_id")\
+        .withColumnRenamed("admitSource", "admitted_from_concept_id")\
         .withColumnRenamed("subject", "person_id")\
-        .withColumnRenamed("type", "preceding_visit_occurrence")\
+        .withColumnRenamed("type", "visit_concept_id")\
         .withColumnRenamed("location", "care_site_id")\
+        .withColumnRenamed("provider", "provider_id")\
         .withColumnRenamed("valueCodeableConcept", "visit_type_concept_id")
     # .withColumnRenamed("location.location.id","care_site_id")\
     # .withColumnRenamed("location.location.type","discharge_to_concept_id")\

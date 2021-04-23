@@ -12,25 +12,35 @@ class TestVisitOccurrence():
 
     __nullable_fields = [
         "visit_start_date", "visit_end_date",
-        "provider_id", "care_site_id", "visit_source_value", "admitted_from_source_value", "discharge_to_source_value", "preceding_visit_occurrence_id"
+        "provider_id", "care_site_id"
     ]
 
     expected_fields = [
         "visit_occurrence_id", "person_id",
         "visit_concept_id", "visit_start_datetime", "visit_end_datetime", "visit_type_concept_id",
-        "admitted_from_concept_id", "visit_source_concept_id", "discharge_to_concept_id"
+        "admitted_from_concept_id"
     ]
 
-    @pytest.fixture()
-    def set_up(self, data_frame):
-        # Using data/catalog.parquet for tests
-        yield map_visit_occurrence(data_frame)
+    # @pytest.fixture()
+    # def set_up(self, data_frame):
+    #     # Using data/catalog.parquet for tests
+    #     yield map_visit_occurrence(data_frame)
 
-    def test_field_names(self, set_up):
-        actual_fields = set_up.columns
+    # def test_field_names(self, set_up):
+    #     actual_fields = set_up.columns
+    #     # Test whether column names exist in dataframe
+    #     assert(
+    #         set(actual_fields) == set(self.expected_fields)
+    #     ), \
+    #         "Resulting columns did not match the expected columns: %s"\
+    #         % self.expected_fields
+
+    def test_field_names(self, data_frame):
+        actual_fields = map_visit_occurrence(data_frame).columns
         # Test whether column names exist in dataframe
         assert(
-            set(actual_fields) == set(self.expected_fields)
+            set(actual_fields) == set(
+                self.expected_fields + self.__nullable_fields)
         ), \
             "Resulting columns did not match the expected columns: %s"\
             % self.expected_fields
