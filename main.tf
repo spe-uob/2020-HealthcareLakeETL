@@ -10,8 +10,8 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "script_bucket" {
-  bucket_prefix = var.prefix
-  acl           = "private"
+  bucket = "${var.prefix}-etl-scripts"
+  acl    = "private"
 
   versioning {
     enabled = true
@@ -21,36 +21,24 @@ resource "aws_s3_bucket" "script_bucket" {
 // Uploads the main.py script to the S3 bucket
 resource "aws_s3_bucket_object" "python_script" {
   bucket       = aws_s3_bucket.script_bucket.id
-  key          = "python_script"
+  key          = "main.py"
   source       = "${path.module}/main.py"
   acl          = "private"
   content_type = "text/x-script.python"
-
-  depends_on = [
-    aws_s3_bucket.script_bucket,
-  ]
 }
 
 // Zips the mappings folder into mappings.zip
-resource "null_resource" "zip" {
-  triggers = {
-    bucket_prefix = var.prefix
-  }
-
-  provisioner "local-exec" {
-    command = "zip -r mappings.zip mappings"
-  }
+data "archive_file" "lib" {
+  type        = "zip"
+  source_dir  = "${path.module}/mappings"
+  output_path = "${path.module}/mappings.zip"
 }
 
 // Uploads the library to the S3 bucket
 resource "aws_s3_bucket_object" "zip_library" {
   bucket       = aws_s3_bucket.script_bucket.id
-  key          = "library"
-  source       = "${path.module}/mappings.zip"
+  key          = "mappings.zip"
+  source       = data.archive_file.lib.output_path
   acl          = "private"
   content_type = "application/zip"
-
-  depends_on = [
-    aws_s3_bucket.script_bucket,
-  ]
 }
