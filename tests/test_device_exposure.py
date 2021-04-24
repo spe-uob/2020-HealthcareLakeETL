@@ -1,7 +1,4 @@
-from datetime import date
-import pytest
-
-from main import map_device_exposure
+from mappings import map_device_exposure
 
 
 class TestDeviceExposure():

@@ -1,9 +1,7 @@
-from datetime import date
-import pytest
 #import pyspark.sql.functions as F
 #import re
 
-from main import map_visit_occurrence
+from mappings import map_visit_occurrence
 
 # --------------------------- NOT FINISHED ------------------------#
 
