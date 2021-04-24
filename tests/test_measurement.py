@@ -1,6 +1,4 @@
-from datetime import date
-import pytest
-from main import map_measurement
+from mappings import map_measurement
 
 
 class TestMeasurement():

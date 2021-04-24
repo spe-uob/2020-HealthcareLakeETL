@@ -1,6 +1,4 @@
-from datetime import date
-import pytest
-from main import map_observation
+from mappings import map_observation
 
 
 class TestObservation():
@@ -11,7 +9,7 @@ class TestObservation():
     ]
     expected_fields = [
         "observation_id", "person_id", "observation_concept_id",
-        "observation_date", "observation_type_concept_id", 
+        "observation_date", "observation_type_concept_id",
         "observation_datetime", "value_as_string", "provider_id",
         "visit_occurrence_id"
     ]

@@ -1,8 +1,4 @@
-from datetime import date
-import pytest
-
-
-from main import map_procedure_occurrence
+from mappings import map_procedure_occurrence
 
 
 class TestProcedureOccurrence():

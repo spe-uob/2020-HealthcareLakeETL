@@ -1,7 +1,7 @@
 from datetime import date
 import pytest
 
-from main import map_patient
+from mappings import map_patient
 
 
 class TestPatient():
