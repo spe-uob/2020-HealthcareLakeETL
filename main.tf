@@ -10,8 +10,10 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "script_bucket" {
-  bucket_prefix = var.prefix
-  acl           = "private"
+  // This can be used to generate a unique name for the bucket with a given prefix
+  // bucket_prefix = var.prefix
+  bucket = "${var.prefix}-glue-etl-scripts"
+  acl    = "private"
 
   versioning {
     enabled = true
@@ -34,7 +36,7 @@ resource "aws_s3_bucket_object" "python_script" {
 // Zips the mappings folder into mappings.zip
 resource "null_resource" "zip" {
   triggers = {
-    bucket_prefix = var.prefix
+    bucket = "${var.prefix}-glue-etl-scripts"
   }
 
   provisioner "local-exec" {
