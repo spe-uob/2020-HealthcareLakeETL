@@ -4,3 +4,7 @@ __pycache__/
 .vscode
 .pytest_cache
 .env
+*.zip
+.terraform
+*.lock.hcl
+*.tfstate.*
