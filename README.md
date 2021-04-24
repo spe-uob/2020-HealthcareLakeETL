@@ -1,4 +1,4 @@
-[![Pytest](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml)
+[![build](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml)
 
 # HealthcareLakeETL
 
