@@ -1,4 +1,4 @@
-from pyspark.sql.functions import dayofmonth, month, year, to_date
+from pyspark.sql.functions import dayofmonth, month, year
 
 
 def map_patient(df):

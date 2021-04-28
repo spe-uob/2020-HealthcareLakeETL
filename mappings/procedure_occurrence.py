@@ -1,4 +1,3 @@
-import datetime as dt
 import pyspark.sql.functions as F
 
 
