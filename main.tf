@@ -34,7 +34,7 @@ resource "null_resource" "zip" {
   }
 
   provisioner "local-exec" {
-    command = "zip -r mappings.zip mappings"
+    command = "cd ${path.module} && zip -r mappings.zip mappings"
   }
 }
 
