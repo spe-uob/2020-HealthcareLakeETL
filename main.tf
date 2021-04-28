@@ -10,8 +10,8 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "script_bucket" {
-  bucket = "${var.prefix}-etl-scripts"
-  acl    = "private"
+  bucket_prefix = "${var.prefix}-etl-scripts"
+  acl           = "private"
 
   versioning {
     enabled = true
