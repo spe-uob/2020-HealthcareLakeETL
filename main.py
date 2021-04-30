@@ -1,6 +1,6 @@
 import sys
 
-from mappings import (map_patient)
+from mappings import mappings
 
 from pyspark.context import SparkContext
 
@@ -33,13 +33,15 @@ datasource = glueContext.create_dynamic_frame_from_catalog(
 # Convert to DataFrame
 df = datasource.toDF()
 
-# Perform mappings
-person = DynamicFrame.fromDF(map_patient(df), glueContext, "person")
 
-# Write Parquet to S3
-datasink = glueContext.write_dynamic_frame.from_options(
-    frame=person, connection_type="s3", connection_options={"path": output_dir},
-    format="parquet", transformation_ctx="datasink"
-)
+for name, mapping in mappings.items():
+    # Perform mapping
+    dyf = DynamicFrame.fromDF(mapping(df), glueContext, mapping.__qualname__)
+    # Write table to S3
+    glueContext.write_dynamic_frame.from_options(
+        frame=dyf, connection_type="s3", format="parquet",
+        connection_options={"path": output_dir+name}
+    )
+
 
 job.commit()
