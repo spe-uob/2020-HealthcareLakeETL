@@ -1,14 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_s3_bucket" "script_bucket" {
   bucket_prefix = "${var.prefix}-etl-scripts"
   acl           = "private"
