@@ -1,5 +1,4 @@
-import datetime as dt
-from pyspark.sql.functions import dayofmonth, month, year, to_date, trunc, split, explode, array
+from pyspark.sql.functions import split
 
 
 def map_visit_occurrence(df):
