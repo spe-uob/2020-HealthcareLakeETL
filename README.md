@@ -1,5 +1,5 @@
 [![build](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml/badge.svg)](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/python-app.yml)
-[![Scan](https://github.com/spe-uob/HealthcareLakeETL/workflows/Scan/badge.svg)](https://github.com/accurics/terrascan)
+[![Scan](https://github.com/spe-uob/HealthcareLakeETL/workflows/Scan/badge.svg)](https://github.com/spe-uob/HealthcareLakeETL/actions/workflows/scan.yml)
 
 
 # HealthcareLakeETL
