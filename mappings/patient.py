@@ -10,7 +10,7 @@ def map_patient(df):
     :rtype: DataFrame
     """
     patients = df.filter(df['resourceType'] == 'Patient')
-    persons = patients.select(['identifier', 'gender', 'birthDate'])
+    persons = patients.select(['id', 'gender', 'birthDate'])
     stage_persons = persons\
         .withColumn("year_of_birth", year(persons['birthDate']))\
         .withColumn("month_of_birth", month(persons['birthDate']))\
